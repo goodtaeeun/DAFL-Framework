@@ -1,0 +1,11 @@
+--- /fuzzer/ParmeSan/tools/compile_bc.py	2022-04-11 07:46:19.461409814 +0000
++++ ParmeSan/tools/compile_bc.py	2022-03-24 05:13:32.892083328 +0000
+@@ -43,7 +43,7 @@
+     run_cmd(f"opt -load {ID_ASSIGNER_PATH} -idassign -idassign-emit-cfg \
+             -idassign-cfg-file cfg.dat {name}.fast.ll")
+     #8) Prune targets
+-    run_cmd(f"python {PRUNE_SCRIPT_PATH} {targets_file} {name}.diff cmp.map {profiling_input_dir} ./{name}.track {target_flags} > targets.pruned.json")
++    run_cmd(f"python3 {PRUNE_SCRIPT_PATH} {targets_file} {name}.diff cmp.map {profiling_input_dir} ./{name}.track {target_flags} > targets.pruned.json")
+ 
+     # Print fuzzing command
+     print("You can now run your target application (with SanOpt enabled) using:")

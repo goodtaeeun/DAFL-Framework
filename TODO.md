@@ -1,0 +1,2 @@
+- Fix compiler inconsistency in smake and scmake.
+- Move Sparrow into docker.

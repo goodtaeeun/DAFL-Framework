@@ -1,0 +1,32 @@
+*.annot
+*.cmo
+*.cma
+*.cmi
+*.a
+*.o
+*.cmx
+*.cmxs
+*.cmxa
+
+# ocamlbuild working directory
+_build/
+
+# ocamlbuild targets
+*.byte
+*.native
+
+# oasis generated files
+setup.data
+setup.log
+
+# Sparrow binaries and outputs
+bin/sparrow*
+sparrow-out
+
+# vim swp files
+.*.sw?
+
+# merlin
+.merlin
+
+.sparrow-vis-history.txt

@@ -1,0 +1,35 @@
+opam-version: "2.0"
+name: "sparrow"
+version: "0.2"
+synopsis: "A static analyzer for C programs"
+maintainer: "Programming Research Laboratory (ROPAS), Seoul National University"
+authors: "Programming Research Laboratory (ROPAS), Seoul National University"
+homepage: "https://github.com/ropas/sparrow"
+bug-reports: "https://github.com/ropas/sparrow/issues"
+license: "BSD"
+dev-repo: "git://github.com/ropas/sparrow.git"
+build: [
+  ["./configure" "--prefix=%{prefix}%"]
+  [make]
+]
+install:[[make "install"]]
+
+remove: [
+  ["./configure" "--prefix=%{prefix}%"]
+  [make "uninstall"]
+]
+
+depends: [
+  "ocaml" {>="4.11.0"}
+  "ocamlfind" {build}
+  "batteries" {>= "2.3.1"}
+  "cil" {>= "1.7.3"}
+  "ocamlgraph"
+  "apron" {>= "0.9.10"}
+  "yojson" {>= "1.2.3"}
+  "lymp" {>= "0.1.3"}
+  "ppx_compare"
+  "clangml" {>= "4.5.0"}
+  "linenoise"
+  "memtrace"
+]

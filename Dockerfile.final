@@ -1,0 +1,53 @@
+FROM directed-benchmark-inter
+
+# Now setup DAFL and Beacon. This comes late because the code changes often.
+
+# Setup Beacon.
+WORKDIR /fuzzer
+COPY docker-setup/Beacon-binaries /fuzzer/Beacon
+COPY docker-setup/setup_Beacon.sh /fuzzer/setup_Beacon.sh
+RUN ./setup_Beacon.sh
+
+# Build benchmarks with Beacon.
+WORKDIR /benchmark
+COPY docker-setup/target/line /benchmark/target/line
+COPY docker-setup/build_bench_Beacon.sh /benchmark/build_bench_Beacon.sh
+RUN ./build_bench_Beacon.sh
+
+# Setup WindRanger
+WORKDIR /fuzzer
+COPY docker-setup/windranger.tar.gz /fuzzer/windranger.tar.gz
+COPY docker-setup/setup_WindRanger.sh /fuzzer/setup_WindRanger.sh
+RUN ./setup_WindRanger.sh
+
+# Build benchmarks with WindRanger.
+WORKDIR /benchmark
+COPY docker-setup/build_bench_WindRanger.sh /benchmark/build_bench_WindRanger.sh
+RUN ./build_bench_WindRanger.sh
+
+# Setup DAFL.
+WORKDIR /fuzzer
+COPY DAFL /fuzzer/DAFL
+RUN cd DAFL && make && cd llvm_mode && make
+
+# Build benchmarks with DAFL.
+WORKDIR /benchmark
+COPY docker-setup/DAFL-input/inst-targ /benchmark/DAFL-input/inst-targ
+COPY docker-setup/DAFL-input/dfg /benchmark/DAFL-input/dfg
+COPY docker-setup/build_bench_DAFL.sh /benchmark/build_bench_DAFL.sh
+RUN ./build_bench_DAFL.sh
+
+# Todo: remove this after fixing slicing.
+# Build benchmarks with DAFL_poc for debugging
+COPY docker-setup/DAFL-input-poc/inst-targ /benchmark/DAFL-input-poc/inst-targ
+COPY docker-setup/build_bench_DAFL_poc.sh /benchmark/build_bench_DAFL_poc.sh
+RUN ./build_bench_DAFL_poc.sh
+
+# Copy script for debugging.
+COPY docker-setup/parse_build_log.py /benchmark/
+
+# Copy tool running scripts.
+COPY docker-setup/tool-script /tool-script
+
+# Reset the working directory to top-level directory.
+WORKDIR /
