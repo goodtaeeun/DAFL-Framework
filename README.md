@@ -54,7 +54,7 @@ The results will be stored in `outputs`
 If you wish to examine the results, run
 ```
 python3 ./scripts/parse-result.py [Output Dir] (Timeout)
-    ```
+```
 
-The results will be summarized in a easy-to-view form.
+The results will be summarized in an easy-to-view form.
 
