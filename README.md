@@ -1,4 +1,4 @@
-# Drected Fuzzing Benchmark
+# Directed Fuzzing Benchmark
 
 ## System configuration for docker
 
