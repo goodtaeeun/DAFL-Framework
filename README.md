@@ -30,34 +30,34 @@ Then, you will have a intermediate docker image to work with.
 Next, you must run the analyzer, `Sparrow`, in order to extract the data dependency of the program.
 To do so, run
 ```
-python3 ./scripts/run_sparrow.py [Target Program Name] [Experiment ID]
+$ python3 ./scripts/run_sparrow.py [Target Program Name] [Experiment ID]
 ```
 The results will be stored in the `outputs` directory, and also will be copied to `./docker-setup/DAFL-inputs`
 
 Now you are ready to continue on building the docker image.
 To finish, run
 ```
-./build_final.sh
+$ ./build_final.sh
 ```
 
 Or, you can pull the pre-built docker image from dockerhub. To do so, run
 ```
-docker pull 2023dafl/dafl
-docker tag 2023dafl/dafl directed-benchmark-final
+$ docker pull 2023dafl/dafl
+$ docker tag 2023dafl/dafl directed-benchmark-final
 ```
 
 ## Running the fuzzing experiments
 
 In order to run the fuzzing sessions, run
 ```
-python3 ./scripts/run-experiments.py [Experiment Id] [Tool] [Timeout] [Iteration]
+$ python3 ./scripts/run-experiments.py [Experiment Id] [Tool] [Timeout] [Iteration]
 ```
 
 The results will be stored in `outputs`
 
 If you wish to examine the results, run
 ```
-python3 ./scripts/parse-result.py [Output Dir] (Timeout)
+$ python3 ./scripts/parse-result.py [Output Dir] (Timeout)
 ```
 
 The results will be summarized in an easy-to-view form.
