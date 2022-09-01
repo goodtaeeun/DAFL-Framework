@@ -40,7 +40,11 @@ To finish, run
 ./build_final.sh
 ```
 
-Or, you can pull the pre-built docker image from dockerhub when it is publicised (Coming Soon).
+Or, you can pull the pre-built docker image from dockerhub. To do so, run
+```
+docker pull 2023dafl/dafl
+docker tag 2023dafl/dafl directed-benchmark-final
+```
 
 ## Running the fuzzing experiments
 
